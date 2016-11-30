@@ -1,5 +1,5 @@
 app:
-  image: 10.100.198.200:5000/gCalc
+  image: 10.100.198.200:5000/calc
   ports:
     - 8080:8080
   links:
