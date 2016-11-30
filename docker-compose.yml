@@ -1,0 +1,14 @@
+app:
+  image: 10.100.198.200:5000/books-ms
+  ports:
+    - 8080:8080
+  links:
+    - db:db
+
+db:
+  image: mongo
+
+tests:
+  image: 10.100.198.200:5000/books-ms-tests
+  volumes:
+    - ./target/scala-2.10:/source/target/scala-2.10
