@@ -9,10 +9,10 @@ RUN apt-get update
 RUN apt-get -y install curl
 
 # Dependencies
-# RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
-# RUN echo "deb http://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
-# RUN curl -sL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-# RUN echo "deb http://packages.linuxmint.com debian import" >> /etc/apt/sources.list
+RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
+RUN echo "deb http://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
+RUN curl -sL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN echo "deb http://packages.linuxmint.com debian import" >> /etc/apt/sources.list
 
 # NodeJS, Git, SBT, xvfb
 RUN apt-get update && \
