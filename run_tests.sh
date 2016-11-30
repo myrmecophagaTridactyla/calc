@@ -2,6 +2,8 @@
 
 set -e
 
+echo "gregorio..."
+
 if [1 = 1]
 then
   sbt "testOnly *Spec"
