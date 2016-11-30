@@ -1,5 +1,5 @@
 app:
-  image: 10.100.198.200:5000/books-ms
+  image: 10.100.198.200:5000/gCalc
   ports:
     - 8080:8080
   links:
@@ -9,6 +9,6 @@ db:
   image: mongo
 
 tests:
-  image: 10.100.198.200:5000/books-ms-tests
+  image: 10.100.198.200:5000/gCalcTest
   volumes:
     - ./target/scala-2.10:/source/target/scala-2.10
