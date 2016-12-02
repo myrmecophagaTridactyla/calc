@@ -1,0 +1,59 @@
+FROM debian:jessie
+MAINTAINER Gregorio Ortelli "gregorio.ortelli@gmail.com"
+
+ENV VERSION 1.0
+
+RUN apt-get update
+
+# CUrl
+RUN apt-get -y install curl
+
+# Dependencies
+RUN echo "deb http://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
+
+RUN echo " ... \n d... \n" && \
+    echo " ... \n does... \n" && \
+    echo " ... \n does not... \n" && \
+    echo " ... \n does not look... \n" && \
+    echo " ... \n does not look like... \n" && \
+    echo " ... \n does not look like any... \n" && \
+    echo " ... \n does not look like anything... \n" && \
+    echo " ... \n does not look like anything to... \n" && \
+    echo " ... \n does not look like anything to me... \n"
+
+# SBT
+RUN apt-get clean && apt-get update && \
+    apt-get -y --force-yes --fix-missing install --no-install-recommends sbt&& \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Scala
+RUN curl -O -q http://downloads.typesafe.com/scala/2.11.5/scala-2.11.5.deb && \
+    dpkg -i scala-2.11.5.deb && \
+    rm scala-2.11.5.deb
+
+# Dirs
+RUN mkdir /source
+RUN mkdir -p /data/db
+
+ADD project /source/project
+ADD build.sbt /source/build.sbt
+ADD run_tests.sh /source/run_tests.sh
+
+RUN chmod +x /source/run_tests.sh
+
+# Dependencies
+RUN cd /source && sbt update
+
+# Envs
+ENV TEST_TYPE "spec"
+ENV DOMAIN "http://172.17.42.1"
+ENV DISPLAY ":1.0"
+ENV DB_HOST localhost
+
+WORKDIR /source
+VOLUME ["/source", "/source/target/scala-2.10"]
+
+CMD ["/source/run_tests.sh"]
+
+EXPOSE 8080
