@@ -12,6 +12,7 @@ RUN apt-get -y install curl
 RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
 RUN echo "deb http://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
 RUN curl -sL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 RUN echo "deb http://packages.linuxmint.com debian import" >> /etc/apt/sources.list
 
 RUN echo " ... \n d... \n" && \
@@ -25,8 +26,7 @@ RUN echo " ... \n d... \n" && \
     echo " ... \n does not look like anything to me... \n"
 
 # NodeJS, Git, SBT, xvfb
-RUN sed -i "s/httpredir.debian.org/`curl -s -D - http://httpredir.debian.org/demo/debian/ | awk '/^Link:/ { print $2 }' | sed -e 's@<http://\(.*\)/debian/>;@\1@g'`/" /etc/apt/sources.list && \
-    apt-get clean && apt-get update && \
+RUN apt-get clean && apt-get update && \
     apt-get -y --fix-missing install wget bzip2 make g++ && \
     apt-get -y --force-yes --fix-missing install --no-install-recommends nodejs git sbt xvfb && \
     apt-get clean && \
