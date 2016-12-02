@@ -14,7 +14,15 @@ RUN echo "deb http://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list
 RUN curl -sL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 RUN echo "deb http://packages.linuxmint.com debian import" >> /etc/apt/sources.list
 
-RUN echo "$(tput setaf 1) does not look like anything to me...$(tput setaf 7)"
+RUN echo "\n d... \n"
+RUN echo "\n does... \n"
+RUN echo "\n does not... \n"
+RUN echo "\n does not look... \n"
+RUN echo "\n does not look like... \n"
+RUN echo "\n does not look like any... \n"
+RUN echo "\n does not look like anything... \n"
+RUN echo "\n does not look like anything to... \n"
+RUN echo "\n does not look like anything to me... \n"
 
 # NodeJS, Git, SBT, xvfb
 RUN apt-get clean && apt-get update && \
