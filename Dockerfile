@@ -1,5 +1,5 @@
 FROM java
-MAINTAINER Viktor Farcic "viktor@farcic.com"
+MAINTAINER Gregorio Ortelli "gregorio.ortelli@gmail.com"
 
 ENV DB_DBNAME books
 ENV DB_COLLECTION books
