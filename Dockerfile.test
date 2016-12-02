@@ -37,6 +37,8 @@ ADD project /source/project
 ADD build.sbt /source/build.sbt
 ADD run_tests.sh /source/run_tests.sh
 
+RUN chmod +x /source/run_tests.sh
+
 # Dependencies
 RUN cd /source && sbt update
 
