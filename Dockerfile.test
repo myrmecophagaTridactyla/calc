@@ -14,10 +14,10 @@ RUN echo "deb http://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list
 RUN curl -sL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 RUN echo "deb http://packages.linuxmint.com debian import" >> /etc/apt/sources.list
 
-RUN echo "does not look like anything to me"
+RUN echo "does not look like anything to me..."
 
 # NodeJS, Git, SBT, xvfb
-RUN apt-get update && \
+RUN apt-get clean && apt-get update && \
     apt-get -y --fix-missing install wget bzip2 make g++ && \
     apt-get -y --force-yes --fix-missing install --no-install-recommends nodejs git sbt xvfb && \
     apt-get clean && \
