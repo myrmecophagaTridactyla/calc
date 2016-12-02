@@ -2,7 +2,7 @@
 
 set -e
 
-echo "gregorio..."
+echo ">>>,,======,,*=~~ ... . .. .. ... .. . . .. ..^^.. . .. ."
 
 sbt "testOnly *Spec"
 sbt assembly
