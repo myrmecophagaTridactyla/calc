@@ -14,19 +14,19 @@ RUN echo "deb http://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list
 RUN curl -sL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 RUN echo "deb http://packages.linuxmint.com debian import" >> /etc/apt/sources.list
 
-RUN echo "\n d... \n"
-RUN echo "\n does... \n"
-RUN echo "\n does not... \n"
-RUN echo "\n does not look... \n"
-RUN echo "\n does not look like... \n"
-RUN echo "\n does not look like any... \n"
-RUN echo "\n does not look like anything... \n"
-RUN echo "\n does not look like anything to... \n"
-RUN echo "\n does not look like anything to me... \n"
+RUN echo " ... \n d... \n" && \
+    echo " ... \n does... \n" && \
+    echo " ... \n does not... \n" && \
+    echo " ... \n does not look... \n" && \
+    echo " ... \n does not look like... \n" && \
+    echo " ... \n does not look like any... \n" && \
+    echo " ... \n does not look like anything... \n" && \
+    echo " ... \n does not look like anything to... \n" && \
+    echo " ... \n does not look like anything to me... \n"
 
 # NodeJS, Git, SBT, xvfb
-RUN apt-get clean && apt-get update && \
-    apt-get -y --fix-missing install wget bzip2 make g++ && \
+RUN apt-get clean && apt-get update
+RUN apt-get -y --fix-missing install wget bzip2 make g++ && \
     apt-get -y --force-yes --fix-missing install --no-install-recommends nodejs git sbt xvfb && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
