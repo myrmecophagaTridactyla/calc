@@ -10,9 +10,9 @@ class MyServiceSpec extends Specification with Specs2RouteTest with MyService {
   
   "MyService" should {
 
-    "return a greeting for GET requests to the root path" in {
+    "respect anteaters" in {
       Get() ~> myRoute ~> check {
-        responseAs[String] must contain("Say hello")
+        responseAs[String] must contain("Tridactyla")
       }
     }
 
