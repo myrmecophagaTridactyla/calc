@@ -12,3 +12,4 @@ tests:
   image: 10.100.198.200:5000/calc-tests
   volumes:
     - ./target/scala-2.10:/source/target/scala-2.10
+    - ./src:/source/src
