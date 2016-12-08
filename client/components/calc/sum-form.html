@@ -10,10 +10,10 @@
         }
     </style>
     <template>
-        <iron-ajax id="putAjax"
-                   method="PUT"
-                   on-response="_handlePutResponse"
-                   on-error="_handlePutError"
+        <iron-ajax id="getAjax"
+                   method="GET"
+                   on-response="_handleGetResponse"
+                   on-error="_handleGetError"
                    content-type="application/json"
                    url="[[requestUrl]]">
         </iron-ajax>
@@ -80,7 +80,7 @@
                 this.errorText = text;
                 this.$.toast.show();
             },
-            _handlePutResponse: function() {
+            _handleGetResponse: function() {
                 this.fire('sumResponse', this._data);
             },
             _showResult: function() {
@@ -94,13 +94,13 @@
                     this.set('_data.sum1', parseInt(this._data.sum1));
                     this.set('_data.sum2', parseInt(this._data.sum2));
                     // iron-ajax does not stringify object
-                    this.$.putAjax.body = JSON.stringify(this._data);
-                    this.$.putAjax.generateRequest();
+                    this.$.getAjax.body = JSON.stringify(this._data);
+                    this.$.getAjax.generateRequest();
                 } else {
                     this._handleError('At least one field is invalid.');
                 }
             },
-            _handlePutError: function() {
+            _handleGetError: function() {
                 this._handleError('The sum could not be calculated');
             },
         });
