@@ -1,3 +1,5 @@
+name := "calc"
+
 organization  := "com.example"
 
 version       := "0.1"
@@ -19,4 +21,6 @@ libraryDependencies ++= {
   )
 }
 
-Revolver.settings
+test in assembly := {}
+
+mainClass in assembly := "com.example.Boot"
