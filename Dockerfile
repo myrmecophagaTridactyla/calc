@@ -8,7 +8,7 @@ ENV DB_HOST localhost
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
 
-COPY target/scala-2.10/books-ms-assembly-1.0.jar /bs.jar
+COPY target/scala-2.10/source-assembly-1.0.jar /bs.jar
 COPY client/components /client/components
 
 CMD ["/run.sh"]
