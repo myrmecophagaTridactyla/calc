@@ -42,9 +42,9 @@ trait MyService extends HttpService with DefaultJsonProtocol {
       import myCalcSumProtocol._
       get {
         respondWithMediaType(MediaTypes.`application/json`) { 
-//          entity(as[calcSum]) { calcSum =>
-            complete(calcSum => calcSum(calcSum.sum1, calcSum.sum2, calcSum.sum1 + calcSum.sum2))
-//          }
+          entity(as[calcSum]) { calcSum =>
+            complete(calcSum(calcSum.sum1, calcSum.sum2, calcSum.sum1 + calcSum.sum2))
+          }
         }
       } 
 //      ~ post {
