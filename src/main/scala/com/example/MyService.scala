@@ -14,10 +14,6 @@ import scala.util.Properties._
 
 case class calcSum(sum1: Int, sum2: Int, result: Int)
 
-object calcSum extends DefaultJsonProtocol {
-    implicit val calcSumFormat = jsonFormat3(calcSum)
-}
-
 // we don't implement our route structure directly in the service actor because
 // we want to be able to test it independently, without having to spin up an actor
 class MyServiceActor extends Actor with MyService {
