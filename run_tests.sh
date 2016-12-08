@@ -4,5 +4,5 @@ set -e
 
 echo ">>>>,======,*=~~ ... . .. .. ... .. . . .. ..^^.. . .. ."
 
-sbt "testOnly *Spec"
+sbt test
 sbt assembly
