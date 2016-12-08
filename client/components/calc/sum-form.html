@@ -35,6 +35,11 @@
                              required
                              error-message="Must be a number">
                 </paper-input>
+                <paper-input id="result"
+                             label="Sum of first summand and second summand"
+                             value="{{_data.result}}"
+                             disabled=true>
+                </paper-input>
                 <paper-button id="submit"
                               raised
                               on-tap="_submit"
