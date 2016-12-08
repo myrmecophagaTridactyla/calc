@@ -23,4 +23,4 @@ libraryDependencies ++= {
 
 test in assembly := {}
 
-mainClass in assembly := "com.example.Boot"
+mainClass in assembly := Some("com.example.Boot")
