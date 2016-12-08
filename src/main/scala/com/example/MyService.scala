@@ -14,7 +14,7 @@ import scala.util.Properties._
 
 
 object myCalcSumProtocol extends DefaultJsonProtocol  {
-   implicit val calcSumFormat = jsonFormat3(calcSum)
+   implicit val calcSumFormat = jsonFormat3(calcSum.apply)
 }
 
 case class calcSum(sum1: Int, sum2: Int, result: Int)
@@ -42,16 +42,16 @@ trait MyService extends HttpService with DefaultJsonProtocol {
       import myCalcSumProtocol._
       get {
         respondWithMediaType(MediaTypes.`application/json`) { 
-          entity(as[calcSum]) { calcSum =>
+//         entity(as[calcSum]) { calcSum =>
 //            complete(calcSum(calcSum.sum1, calcSum.sum2, calcSum.sum1 + calcSum.sum2))
             complete(calcSum(3, 4, 5))
           }
         }
       } 
-//      ~ post {
-//        entity(as[calcSum]) { calcSum =>
-//          complete(calcSum(3, 2, 5))
-//        }
-//      }
+      ~ post {
+        entity(as[calcSum]) { calcSum =>
+          complete(calcSum(3, 2, 5))
+        }
+      }
     }
 }
