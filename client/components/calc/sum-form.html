@@ -1,0 +1,94 @@
+<dom-module id="sum-form">
+    <style>
+        .mainButton {
+            color: var(--button-main-color);
+            background: var(--button-main-background);
+        }
+        .warningButton {
+            color: var(--button-warning-color);
+            background: var(--button-warning-background);
+        }
+    </style>
+    <template>
+        <iron-ajax id="putAjax"
+                   method="PUT"
+                   on-response="_handlePutResponse"
+                   on-error="_handlePutError"
+                   content-type="application/json"
+                   url="[[requestUrl]]">
+        </iron-ajax>
+        <div>
+            <form id="form">
+                <paper-input id="sum1"
+                             label="First summand"
+                             value="{{_data.sum1}}"
+                             auto-validate
+                             pattern="[1-9][0-9]*"
+                             required
+                             error-message="Must be a number">
+                </paper-input>
+                <paper-input id="sum2"
+                             label="Second summand"
+                             value="{{_data.sum2}}"
+                             auto-validate
+                             pattern="[1-9][0-9]*"
+                             required
+                             error-message="Must be a number">
+                </paper-input>
+                <paper-button id="submit"
+                              raised
+                              on-tap="_submit"
+                              class="mainButton">[[submitText]]</paper-button>
+            </form>
+        </div>
+        <paper-toast id="toast" text="[[errorText]]"></paper-toast>
+    </template>
+</dom-module>
+<script>
+    (function() {
+        Polymer({
+            is: 'sum-form',
+            properties: {
+                requestUrl: {
+                    type: String,
+                    value: '/api/v1/sum'
+                },
+                errorText: {
+                    type: String,
+                    value: 'This is an error message'
+                },
+                submitText: {
+                    type: String,
+                    value: 'Submit'
+                },
+                _data: {
+                    type: Object,
+                    value: {}
+                }
+            },
+            _handleError: function(text) {
+                this.errorText = text;
+                this.$.toast.show();
+            },
+            _handlePutResponse: function() {
+                this.fire('putSum', this._data);
+            },
+            _submit: function() {
+                if (this.$.form.checkValidity()) {
+                    // This is a workaround.
+                    // _id should be sent as number
+                    this.set('_data.sum1', parseInt(this._data.sum1));
+                    this.set('_data.sum2', parseInt(this._data.sum2));
+                    // iron-ajax does not stringify object
+                    this.$.putAjax.body = JSON.stringify(this._data);
+                    this.$.putAjax.generateRequest();
+                } else {
+                    this._handleError('At least one field is invalid.');
+                }
+            },
+            _handlePutError: function() {
+                this._handleError('The sum could not be calculated');
+            },
+        });
+    })();
+</script>
