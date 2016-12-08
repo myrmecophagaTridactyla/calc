@@ -40,6 +40,7 @@ trait MyService extends HttpService with DefaultJsonProtocol {
   val myRoute =
     pathPrefix("api" / "v1" / "sum") {
       import myCalcSumProtocol._
+      import calcSum._
       get {
         respondWithMediaType(MediaTypes.`application/json`) { 
 //         entity(as[calcSum]) { calcSum =>
