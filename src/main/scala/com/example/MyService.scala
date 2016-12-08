@@ -42,21 +42,19 @@ trait MyService extends HttpService with DefaultJsonProtocol {
       
       import myCalcSumProtocol._
 
-      val sum1 = calcSum.sum1
-      val sum2 = calcSum.sum2
-       
       get {
         respondWithMediaType(MediaTypes.`application/json`) { 
-//         entity(as[calcSum]) { calcSum =>
-//            complete(calcSum(calcSum.sum1, calcSum.sum2, calcSum.sum1 + calcSum.sum2))
-            complete(calcSum(sum1, sum2, sum1 + sum2))
-//          }
+         entity(as[calcSum]) { calcSum =>
+            println(calcSum.sum1)
+            println(calcSum.sum2)
+            complete(calcSum.sum1 + calcSum.sum2)
+          }
         }
       } 
-      ~ post {
-        entity(as[calcSum]) { calcSum =>
-          complete(calcSum(3, 2, 5))
-        }
-      }
+//      ~ post {
+//        entity(as[calcSum]) { calcSum =>
+//          complete(calcSum(3, 2, 5))
+//        }
+//      }
     }
 }
