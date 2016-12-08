@@ -15,7 +15,7 @@ import scala.util.Properties._
 case class calcSum(sum1: Int, sum2: Int, result: Int)
 
 object calcSum extends DefaultJsonProtocol {
-    implicit val calcSumFormat = jsonFormat3(calcSum.apply)
+    implicit val calcSumFormat = jsonFormat3(calcSum)
 }
 
 // we don't implement our route structure directly in the service actor because
@@ -38,7 +38,7 @@ trait MyService extends HttpService with DefaultJsonProtocol {
 
   implicit val calcSumFormat = jsonFormat3(calcSum)
   val myRoute =
-    pathprefix("api" / "v1" / "sum") {
+    pathPrefix("api" / "v1" / "sum") {
       get {
         respondWithMediaType(MediaTypes.`application/json`) { 
           complete (calcSum(calcSum.sum1, calcSum.sum2, calcSum.sum1 + calcSum.sum2))
