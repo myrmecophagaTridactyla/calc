@@ -43,7 +43,7 @@ trait MyService extends HttpService with DefaultJsonProtocol {
       get {
         respondWithMediaType(MediaTypes.`application/json`) { 
 //          entity(as[calcSum]) { calcSum =>
-            complete(calcSum(3, 2, 5))
+            complete(calcSum => calcSum(calcSum.sum1, calcSum.sum2, calcSum.sum1 + calcSum.sum2))
 //          }
         }
       } 
