@@ -39,13 +39,17 @@ trait MyService extends HttpService with DefaultJsonProtocol {
 
   val myRoute =
     pathPrefix("api" / "v1" / "sum") {
+      
       import myCalcSumProtocol._
-      import calcSum._
+
+      val sum1 = calcSum.sum1
+      val sum2 = calcSum.sum2
+       
       get {
         respondWithMediaType(MediaTypes.`application/json`) { 
 //         entity(as[calcSum]) { calcSum =>
 //            complete(calcSum(calcSum.sum1, calcSum.sum2, calcSum.sum1 + calcSum.sum2))
-            complete(calcSum(3, 4, 5))
+            complete(calcSum(sum1, sum2, sum1 + sum2))
 //          }
         }
       } 
