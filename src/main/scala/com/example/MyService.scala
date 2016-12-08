@@ -47,7 +47,7 @@ trait MyService extends HttpService with DefaultJsonProtocol {
          entity(as[calcSum]) { calcSum =>
             println(calcSum.sum1)
             println(calcSum.sum2)
-            complete(calcSum.sum1 + calcSum.sum2)
+            complete((calcSum.sum1 + calcSum.sum2).toString)
           }
         }
       } 
