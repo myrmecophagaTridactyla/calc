@@ -51,9 +51,9 @@
 </div>
 <script>
     var sumForm = document.querySelector('#sum-form');
-    sumForm.addEventListener('putSumRequest', onPutSumRequest);
-    function onPutSumRequest(e) {
-        sumForm.open(e.detail._id);
+    sumForm.addEventListener('sumResponse', onSumResponse);
+    function onSumResponse(e) {
+        sumForm._showResult();
     }
 </script>
 </body>
