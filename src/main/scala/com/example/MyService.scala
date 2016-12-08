@@ -12,6 +12,11 @@ import com.novus.salat._
 import com.novus.salat.global._
 import scala.util.Properties._
 
+
+object myCalcSumProtocol extends DefaultJsonProtocol  {
+   implicit val calcSumFormat = jsonFormat3(calcSum)
+}
+
 case class calcSum(sum1: Int, sum2: Int, result: Int)
 
 // we don't implement our route structure directly in the service actor because
@@ -32,19 +37,19 @@ class MyServiceActor extends Actor with MyService {
 // this trait defines our service behavior independently from the service actor
 trait MyService extends HttpService with DefaultJsonProtocol {
 
-  implicit val calcSumFormat = jsonFormat3(calcSum)
   val myRoute =
     pathPrefix("api" / "v1" / "sum") {
       get {
         respondWithMediaType(MediaTypes.`application/json`) { 
-          entity(as[calcSum]) { calcSum =>
+//          entity(as[calcSum]) { calcSum =>
             complete(calcSum(3, 2, 5))
-          }
+//          }
         }
-      } ~ post {
-        entity(as[calcSum]) { calcSum =>
-          complete(calcSum(3, 2, 5))
-        }
-      }
+      } 
+//      ~ post {
+//        entity(as[calcSum]) { calcSum =>
+//          complete(calcSum(3, 2, 5))
+//        }
+//      }
     }
 }
