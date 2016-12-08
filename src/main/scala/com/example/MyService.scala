@@ -45,7 +45,7 @@ trait MyService extends HttpService with DefaultJsonProtocol {
 //         entity(as[calcSum]) { calcSum =>
 //            complete(calcSum(calcSum.sum1, calcSum.sum2, calcSum.sum1 + calcSum.sum2))
             complete(calcSum(3, 4, 5))
-          }
+//          }
         }
       } 
       ~ post {
