@@ -47,6 +47,7 @@
             </form>
         </div>
         <paper-toast id="toast" text="[[errorText]]"></paper-toast>
+        <paper-toast id="sumResult" text="[[resultText]]"></paper-toast>
     </template>
 </dom-module>
 <script>
@@ -66,6 +67,10 @@
                     type: String,
                     value: 'Submit'
                 },
+                resultText: {
+                    type: String,
+                    value: 'The result is '
+                },
                 _data: {
                     type: Object,
                     value: {}
@@ -77,6 +82,10 @@
             },
             _handlePutResponse: function() {
                 this.fire('sumResponse', this._data);
+            },
+            _showResult: function() {
+                this.resultText += this.result;
+                this.$.sumResult.show();
             },
             _submit: function() {
                 if (this.$.form.checkValidity()) {
