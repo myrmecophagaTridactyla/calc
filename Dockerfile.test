@@ -27,8 +27,8 @@ RUN curl -O -q http://downloads.typesafe.com/scala/2.11.5/scala-2.11.5.deb && \
     dpkg -i scala-2.11.5.deb && \
     rm scala-2.11.5.deb
 
-# Gulp, bower ==> skip
-# RUN npm install -g gulp bower
+# Gulp, bower
+RUN npm install -g gulp bower
 
 # Dirs
 RUN mkdir /source
@@ -46,7 +46,7 @@ RUN chmod +x /source/run_tests.sh
 
 # Dependencies
 RUN cd /source && sbt update
-# RUN cd /source/client && npm install && bower install --allow-root --config.interactive=false -s
+RUN cd /source/client && npm install && bower install --allow-root --config.interactive=false -s
 
 # Envs
 ENV TEST_TYPE "spec"
