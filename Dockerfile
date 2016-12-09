@@ -19,14 +19,9 @@ RUN echo "deb http://packages.linuxmint.com debian import" >> /etc/apt/sources.l
 # NodeJS, Git, SBT, xvfb
 RUN apt-get clean && apt-get update && \
     apt-get -y --fix-missing install wget bzip2 make g++ && \
-    apt-get -y --force-yes --fix-missing install --no-install-recommends nodejs git sbt xvfb && \
+    apt-get -y --force-yes --fix-missing install --no-install-recommends nodejs git xvfb && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
-# Scala
-RUN curl -O -q http://downloads.typesafe.com/scala/2.11.5/scala-2.11.5.deb && \
-    dpkg -i scala-2.11.5.deb && \
-    rm scala-2.11.5.deb
 
 # Gulp, bower
 RUN npm install -g gulp bower
@@ -46,7 +41,6 @@ ADD run_tests.sh /source/run_tests.sh
 RUN chmod +x /source/run_tests.sh
 
 # Dependencies
-RUN cd /source && sbt update
 RUN cd /source/client && npm install && bower install --allow-root --config.interactive=false -s
 
 # Envs
