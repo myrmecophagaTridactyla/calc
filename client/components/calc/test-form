@@ -1,0 +1,26 @@
+<dom-module id="sum-form">
+    <style>
+        .mainButton {
+            color: var(--button-main-color);
+            background: var(--button-main-background);
+        }
+        .warningButton {
+            color: var(--button-warning-color);
+            background: var(--button-warning-background);
+        }
+    </style>
+    <template>
+        <div>
+            <form id="form">
+                <paper-input id="sum1"
+                             label="First summand"
+                             value="{{_data.sum1}}"
+                             auto-validate
+                             pattern="[1-9][0-9]*"
+                             required
+                             error-message="Must be a number">
+                </paper-input>
+            </form>
+        </div>
+    </template>
+</dom-module>
