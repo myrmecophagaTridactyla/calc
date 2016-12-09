@@ -1,5 +1,4 @@
 FROM java
-MAINTAINER Gregorio Ortelli "gregorio.ortelli@gmail.com"
 
 RUN apt-get update
 
@@ -21,11 +20,10 @@ RUN apt-get clean && apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Gulp, bower
-RUN npm install -g gulp bower
+RUN npm install -g bower
 
 # Dirs
 RUN mkdir /source
-RUN mkdir -p /data/db
 
 ADD project /source/project
 ADD build.sbt /source/build.sbt
@@ -33,22 +31,10 @@ ADD client/bower.json /source/client/bower.json
 ADD client/gulpfile.js /source/client/gulpfile.js
 ADD client/package.json /source/client/package.json
 ADD client/wct.conf.js /source/client/wct.conf.js
-ADD run_tests.sh /source/run_tests.sh
-
-RUN chmod +x /source/run_tests.sh
 
 # Dependencies
 RUN cd /source/client && npm install && bower install --allow-root --config.interactive=false -s
-
-# Envs
-ENV TEST_TYPE "spec"
-ENV DOMAIN "http://172.17.42.1"
-ENV DISPLAY ":1.0"
-ENV DB_HOST localhost
-
-ENV DB_DBNAME books
-ENV DB_COLLECTION books
-ENV DB_HOST localhost
+RUN npm run deps
 
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
