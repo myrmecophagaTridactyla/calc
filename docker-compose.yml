@@ -14,5 +14,4 @@ tests:
     - ./target/scala-2.10:/source/target/scala-2.10
     - ./src:/source/src
     - ./client/components:/source/client/components
-    - ./client/wct-complete.conf.js:/source/client/wct.conf.js
-
+ 
