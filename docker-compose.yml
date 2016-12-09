@@ -2,11 +2,6 @@ app:
   image: 10.100.198.200:5000/calc-app
   ports:
     - 8080:8080
-  links:
-    - db:db
-
-db:
-  image: mongo
 
 tests:
   image: 10.100.198.200:5000/calc-tests
@@ -14,4 +9,3 @@ tests:
     - ./target/scala-2.10:/source/target/scala-2.10
     - ./src:/source/src
     - ./client/components:/source/client/components
- 
