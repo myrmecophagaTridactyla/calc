@@ -17,11 +17,11 @@ object myCalcSumProtocol extends DefaultJsonProtocol  {
    implicit val calcSumFormat = jsonFormat3(calcSum.apply)
 }
 
-case class calcSum(sum1: Int, sum2: Int, result: Int)
+case class calcSum(sum1: Float, sum2: Float, result: Float)
 
 // we don't implement our route structure directly in the service actor because
 // we want to be able to test it independently, without having to spin up an actor
-class MyServiceActor extends Actor with MyService {
+class MyServiceActor extends Actor with MyServiceRoute with MyStaticRoute {
 
   // the HttpService trait defines only one abstract member, which
   // connects the services environment to the enclosing actor or test
@@ -30,14 +30,14 @@ class MyServiceActor extends Actor with MyService {
   // this actor only runs our route, but you could add
   // other things here, like request stream processing
   // or timeout handling
-  def receive = runRoute(myRoute)
+  def receive = runRoute(myServiceRoute ~ myStaticRoute)
 }
 
 
 // this trait defines our service behavior independently from the service actor
-trait MyService extends HttpService with DefaultJsonProtocol {
+trait MyServiceRoute extends HttpService with DefaultJsonProtocol {
 
-  val myRoute =
+  val myServiceRoute =
     pathPrefix("api" / "v1" / "sum") {
       
       import myCalcSumProtocol._
@@ -50,10 +50,14 @@ trait MyService extends HttpService with DefaultJsonProtocol {
           }
         }
       } 
-//      ~ post {
-//        entity(as[calcSum]) { calcSum =>
-//          complete(calcSum(3, 2, 5))
-//        }
-//      }
     }
 }
+
+trait MyStaticRoute extends HttpService {
+
+  val myStaticRoute = pathPrefix("") {
+    getFromDirectory("client/")
+  }
+
+}
+
