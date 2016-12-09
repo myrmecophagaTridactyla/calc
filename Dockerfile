@@ -1,9 +1,6 @@
 FROM java
 MAINTAINER Gregorio Ortelli "gregorio.ortelli@gmail.com"
 
-FROM debian:jessie
-MAINTAINER Gregorio Ortelli "gregorio.ortelli@gmail.com"
-
 RUN apt-get update
 
 # CUrl
