@@ -1,8 +1,5 @@
 FROM java
 
-# Gulp, bower
-RUN npm install -g bower
-
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
 
