@@ -23,7 +23,7 @@
                              label="First summand"
                              value="{{_data.sum1}}"
                              auto-validate
-                             pattern="[1-9][0-9]*"
+                             type=number
                              required
                              error-message="Must be a number">
                 </paper-input>
@@ -31,7 +31,7 @@
                              label="Second summand"
                              value="{{_data.sum2}}"
                              auto-validate
-                             pattern="[1-9][0-9]*"
+                             type=number
                              required
                              error-message="Must be a number">
                 </paper-input>
@@ -82,11 +82,10 @@
             },
             _handlePutResponse: function(e) {
                 this._data = e.detail.response;
-                alert('houston we have a response');
                 this.fire('sumResponse', this._data);
             },
             _showResult: function() {
-                this.resultText += String(this.result);
+                this.resultText += String(this._data.result);
                 this.$.sumResult.show();
             },
             _submit: function() {
@@ -99,7 +98,7 @@
                     this.set('_data.result', parseFloat(0));
                     // iron-ajax does not stringify object
                     this.$.putAjax.body = JSON.stringify(this._data);
-                    var request = this.$.putAjax.generateRequest();
+                    this.$.putAjax.generateRequest();
                 } else {
                     this._handleError('At least one field is invalid.');
                 }
