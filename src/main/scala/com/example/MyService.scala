@@ -42,7 +42,7 @@ trait MyServiceRoute extends HttpService with DefaultJsonProtocol {
       
       import myCalcSumProtocol._
 
-      get {
+      put {
         respondWithMediaType(MediaTypes.`application/json`) { 
          entity(as[calcSum]) { calcsum =>
             val calcResult = new calcSum(calcsum.sum1, calcsum.sum2, calcsum.sum1 + calcsum.sum2)
