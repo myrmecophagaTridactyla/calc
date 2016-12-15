@@ -1,8 +1,10 @@
 FROM java
 
-COPY run_volume_tests.sh /run_volume_tests.sh
-RUN chmod +x /run_volume_tests.sh
+RUN mkdir vlm
+COPY run_volume_tests.sh vlm/run_volume_tests.sh
+RUN chmod +x vlm/run_volume_tests.sh
 
+WORKDIR /vlm
 CMD ["/run_volume_tests.sh"]
 
 EXPOSE 8080
