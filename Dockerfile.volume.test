@@ -1,9 +1,0 @@
-FROM java
-
-RUN mkdir vlm
-COPY run_volume_tests.sh /run_volume_tests.sh
-RUN chmod +x /run_volume_tests.sh
-
-CMD ["/run_volume_tests.sh"]
-
-EXPOSE 8080
