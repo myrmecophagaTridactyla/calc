@@ -73,6 +73,10 @@
                     type: String,
                     value: 'The result is '
                 },
+                resultTextRaw: {
+                    type: String,
+                    value: 'The result is '
+                },
                 _data: {
                     type: Object,
                     value: {}
@@ -85,6 +89,7 @@
             _handlePutResponse: function(e) {
                 var sum1 = Math.round(e.detail.response.sum1*10000)/10000;
                 var sum2 = Math.round(e.detail.response.sum2*10000)/10000;
+                alert(Math.round(e.detail.response.result*10000)/10000);
                 var result = Math.round(e.detail.response.result*10000)/10000;
                 this._data.sum1 = sum1;
                 this._data.sum2 = sum2;
@@ -94,6 +99,7 @@
             _showResult: function() {
                 this.resultText += String(this._data.result);
                 this.$.sumResult.show();
+                this.resultText = this.resultTextRaw;
             },
             _submit: function() {
                 if (this.$.form.checkValidity()) {
