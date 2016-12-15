@@ -24,7 +24,7 @@
                              value="{{_data.sum1}}"
                              auto-validate
                              type=number
-                             step=10^(-50)
+                             step=0.0001
                              required
                              error-message="Must be a number">
                 </paper-input>
@@ -33,7 +33,7 @@
                              value="{{_data.sum2}}"
                              auto-validate
                              type=number
-                             step=10^(-50)
+                             step=0.0001
                              required
                              error-message="Must be a number">
                 </paper-input>
@@ -94,11 +94,11 @@
                 if (this.$.form.checkValidity()) {
                     // This is a workaround.
                     // summand should be sent as numbers
-                    //this.set('_data.sum1', parseFloat(this._data.sum1));
-                    //this.set('_data.sum2', parseFloat(this._data.sum2));
-                    
+                    this.set('_data.sum1', parseFloat(this._data.sum1));
+                    this.set('_data.sum2', parseFloat(this._data.sum2));
                     //this is another workaround: result cannot be null
                     this.set('_data.result', parseFloat(0));
+                    
                     // iron-ajax does not stringify object
                     this.$.putAjax.body = JSON.stringify(this._data);
                     this.$.putAjax.generateRequest();
