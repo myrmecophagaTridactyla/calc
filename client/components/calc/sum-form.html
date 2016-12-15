@@ -94,8 +94,9 @@
                 if (this.$.form.checkValidity()) {
                     // This is a workaround.
                     // summand should be sent as numbers
-                    this.set('_data.sum1', parseFloat(this._data.sum1));
-                    this.set('_data.sum2', parseFloat(this._data.sum2));
+                    //this.set('_data.sum1', parseFloat(this._data.sum1));
+                    //this.set('_data.sum2', parseFloat(this._data.sum2));
+                    
                     //this is another workaround: result cannot be null
                     this.set('_data.result', parseFloat(0));
                     // iron-ajax does not stringify object
