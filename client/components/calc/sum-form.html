@@ -93,11 +93,11 @@
                     // summand should be sent as numbers
                     this.set('_data.sum1', parseInt(this._data.sum1));
                     this.set('_data.sum2', parseInt(this._data.sum2));
-                    alert('gregorio');
                     //this is another workaround: result cannot be null
                     this.set('_data.result', parseInt(0));
                     // iron-ajax does not stringify object
                     this.$.getAjax.body = JSON.stringify(this._data);
+                    alert(this.$.getAjax.body);
                     this.$.getAjax.generateRequest();
                 } else {
                     this._handleError('At least one field is invalid.');
