@@ -1,0 +1,4 @@
+volume:
+  image: 10.100.198.200:5000/volume
+  volumes:
+    - ./volume:/vlm
