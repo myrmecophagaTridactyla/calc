@@ -10,10 +10,10 @@
         }
     </style>
     <template>
-        <iron-ajax id="getAjax"
-                   method="GET"
-                   on-response="_handleGetResponse"
-                   on-error="_handleGetError"
+        <iron-ajax id="putAjax"
+                   method="PUT"
+                   on-response="_handlePutResponse"
+                   on-error="_handlePutError"
                    content-type="application/json"
                    url="[[requestUrl]]">
         </iron-ajax>
@@ -80,7 +80,7 @@
                 this.errorText = text;
                 this.$.toast.show();
             },
-            _handleGetResponse: function(e) {
+            _handlePutResponse: function(e) {
                 this._data = e.detail.response;
                 alert('houston we have a response');
                 this.fire('sumResponse', this._data);
@@ -98,16 +98,13 @@
                     //this is another workaround: result cannot be null
                     this.set('_data.result', parseFloat(0));
                     // iron-ajax does not stringify object
-                    this.$.getAjax.body = JSON.stringify(this._data);
-                    alert(this.$.getAjax.body);
-                    var request = this.$.getAjax.generateRequest();
-                    alert(String(request.xhr));
-                    alert(String(request.response.statusText));
+                    this.$.putAjax.body = JSON.stringify(this._data);
+                    var request = this.$.putAjax.generateRequest();
                 } else {
                     this._handleError('At least one field is invalid.');
                 }
             },
-            _handleGetError: function() {
+            _handlePutError: function() {
                 this._handleError('The sum could not be calculated');
             },
         });
