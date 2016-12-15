@@ -1,19 +1,12 @@
 #!/bin/bash
-
 set -e
 
-echo 'tamandua was here'
+cd /vlm
 
 echo 'this is a test' > test.txt
 
-echo '...and here...'
-
 mkdir test_directory
-
-echo 'and here as well...'
 
 cd test_directory
 
 echo 'this is another test' > another_test.txt
-
-echo 'finally here'
