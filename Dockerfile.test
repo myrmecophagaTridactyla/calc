@@ -44,7 +44,6 @@ RUN chmod +x /source/run_tests.sh
 RUN cd /source && sbt update
 
 WORKDIR /source
-VOLUME ["/source", "/source/target/scala-2.10",  "/root/.ivy2/cache", "/source/client"]
 
 CMD ["/source/run_tests.sh"]
 
