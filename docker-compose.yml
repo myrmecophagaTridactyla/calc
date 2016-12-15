@@ -8,4 +8,4 @@ tests:
   volumes:
     - ./target/scala-2.10:/source/target/scala-2.10
     - ./src:/source/src
-    - ./client/components:/source/client/components
+    - ./client:/source/client
