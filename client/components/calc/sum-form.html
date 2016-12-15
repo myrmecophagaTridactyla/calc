@@ -90,13 +90,7 @@
                 var sum1 = Math.round(e.detail.response.sum1*10000)/10000;
                 var sum2 = Math.round(e.detail.response.sum2*10000)/10000;
                 var result = Math.round(e.detail.response.result*10000)/10000;
-//                this._data.sum1 = sum1;
-//                this._data.sum2 = sum2;
-//                this._data.result = result;
                 this._data = {sum1: sum1, sum2: sum2, result: result};
-                this._data.result = parseFloat(5);
-                alert(result);
-                alert(this._data.result);
                 this.fire('sumResponse', this._data);
             },
             _showResult: function() {
