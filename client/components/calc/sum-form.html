@@ -101,7 +101,8 @@
                     this.$.getAjax.body = JSON.stringify(this._data);
                     alert(this.$.getAjax.body);
                     var request = this.$.getAjax.generateRequest();
-                    alert(String(request));
+                    alert(String(request.xhr));
+                    alert(String(request.response));
                 } else {
                     this._handleError('At least one field is invalid.');
                 }
