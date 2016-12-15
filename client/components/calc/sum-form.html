@@ -95,6 +95,8 @@
             },
             _showResult: function() {
                 this.resultText += String(this._data.result);
+                alert(this._data.result);
+                alert(this.resultText);
                 this.$.sumResult.show();
                 this.resultText = this.resultTextRaw;
             },
