@@ -13,11 +13,11 @@ import com.novus.salat.global._
 import scala.util.Properties._
 
 
-object myCalcSumProtocol extends DefaultJsonProtocol  {
-   implicit val calcSumFormat = jsonFormat3(calcSum.apply)
+object myCalcProtocol extends DefaultJsonProtocol  {
+   implicit val calcFormat = jsonFormat3(calc.apply)
 }
 
-case class calcSum(sum1: Float, sum2: Float, result: Float)
+case class calc(num1: Float, num2: Float, result: Float)
 
 // we don't implement our route structure directly in the service actor because
 // we want to be able to test it independently, without having to spin up an actor
@@ -39,19 +39,44 @@ trait MyServiceRoute extends HttpService with DefaultJsonProtocol {
 
   val myServiceRoute =
     pathPrefix("api" / "v1" / "sum") {
-      
-      import myCalcSumProtocol._
-
       put {
         respondWithMediaType(MediaTypes.`application/json`) { 
-         entity(as[calcSum]) { calcsum =>
-            val calcResult = new calcSum(calcsum.sum1, calcsum.sum2, calcsum.sum1 + calcsum.sum2)
+         entity(as[calc]) { calc =>
+            val calcResult = new calc(calc.num1, calc.num2, calc.num1 + calc.num2)
             complete(calcResult)
           }
         }
       } 
-    }
+    } ~ pathPrefix("api" / "v1" / "multiply") {
+      put {
+        respondWithMediaType(MediaTypes.`application/json`) { 
+         entity(as[calc]) { calc =>
+            val calcResult = new calc(calc.num1, calc.num2, calc.num1 * calc.num2)
+            complete(calcResult)
+          }
+        }
+      } 
+    } ~ pathPrefix("api" / "v1" / "subtract") {
+      put {
+        respondWithMediaType(MediaTypes.`application/json`) { 
+         entity(as[calc]) { calc =>
+            val calcResult = new calc(calc.num1, calc.num2, calc.num1 - calc.num2)
+            complete(calcResult)
+          }
+        }
+      } 
+    } ~ pathPrefix("api" / "v1" / "divide") {
+      put {
+        respondWithMediaType(MediaTypes.`application/json`) { 
+         entity(as[calc]) { calc =>
+            val calcResult = new calc(calc.num1, calc.num2, calc.num1 / calc.num2)
+            complete(calcResult)
+        }
+      }
+    } 
+  }
 }
+
 
 trait MyStaticRoute extends HttpService {
 
