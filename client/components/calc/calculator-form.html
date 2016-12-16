@@ -139,7 +139,7 @@
             },
             _submitSum: function() {
                 if (this.$.form.checkValidity()) {
-                    this.$.putAjax.url = requestUrl + requestUrlSum;
+                    this.$.putAjax.url = this.requestUrl + this.requestUrlSum;
                     // This is a workaround.
                     // summand should be sent as numbers
                     this.set('_data.num1', parseFloat(this._data.num1));
@@ -156,7 +156,7 @@
             },
             _submitMultiply: function() {
                 if (this.$.form.checkValidity()) {
-                    this.$.putAjax.url = requestUrl + requestUrlMultiply;
+                    this.$.putAjax.url = this.requestUrl + this.requestUrlMultiply;
                     // This is a workaround.
                     // summand should be sent as numbers
                     this.set('_data.num1', parseFloat(this._data.num1));
@@ -173,7 +173,7 @@
             },
             _submitSubtract: function() {
                 if (this.$.form.checkValidity()) {
-                    this.$.putAjax.url = requestUrl + requestUrlSubtract;
+                    this.$.putAjax.url = this.requestUrl + this.requestUrlSubtract;
                     // This is a workaround.
                     // summand should be sent as numbers
                     this.set('_data.num1', parseFloat(this._data.num1));
@@ -190,7 +190,7 @@
             },
             _submitDivide: function() {
                 if (this.$.form.checkValidity()) {
-                    this.$.putAjax.url = requestUrl + requestUrlDivide;
+                    this.$.putAjax.url = this.requestUrl + this.requestUrlDivide;
                     // This is a workaround.
                     // summand should be sent as numbers
                     this.set('_data.num1', parseFloat(this._data.num1));
