@@ -1,0 +1,213 @@
+<dom-module id="calculcator-form">
+    <style>
+        .mainButton {
+            color: var(--button-main-color);
+            background: var(--button-main-background);
+        }
+        .warningButton {
+            color: var(--button-warning-color);
+            background: var(--button-warning-background);
+        }
+    </style>
+    <template>
+        <iron-ajax id="putAjax"
+                   method="PUT"
+                   on-response="_handlePutResponse"
+                   on-error="_handlePutError"
+                   content-type="application/json">
+        </iron-ajax>
+        <div>
+            <form id="form">
+                <paper-input id="num1"
+                             label="First operand"
+                             value="{{_data.num1}}"
+                             auto-validate
+                             type=number
+                             step=0.0001
+                             required
+                             error-message="Must be a number">
+                </paper-input>
+                <paper-input id="num2"
+                             label="Second operand"
+                             value="{{_data.num2}}"
+                             auto-validate
+                             type=number
+                             step=0.0001
+                             required
+                             error-message="Must be a number">
+                </paper-input>
+                <paper-input id="result"
+                             label="The result"
+                             value="{{_data.result}}"
+                             disabled=true>
+                </paper-input>
+                <paper-button id="submitSum"
+                              raised
+                              on-tap="_submitSum"
+                              class="mainButton">[[submitSumText]]</paper-button>
+                <paper-button id="submitMultiply"
+                              raised
+                              on-tap="_submitMultiply"
+                              class="mainButton">[[submitMultiplyText]]</paper-button>
+                <paper-button id="submitSubtract"
+                              raised
+                              on-tap="_submitSubtract"
+                              class="mainButton">[[submitSubtractText]]</paper-button>
+                <paper-button id="submitDivide"
+                              raised
+                              on-tap="_submitDivide"
+                              class="mainButton">[[submitDivideText]]</paper-button>
+            </form>
+        </div>
+        <paper-toast id="toast" text="[[errorText]]"></paper-toast>
+        <paper-toast id="result" text="[[resultText]]"></paper-toast>
+    </template>
+</dom-module>
+<script>
+    (function() {
+        Polymer({
+            is: 'calculator-form',
+            properties: {
+                requestUrl: {
+                    type: String,
+                    value: '/api/v1/'
+                },
+                requestUrlSum: {
+                    type: String,
+                    value: 'sum/'
+                },
+                requestUrlMultiply: {
+                    type: String,
+                    value: 'multiply/'
+                },
+                requestUrlSubtract: {
+                    type: String,
+                    value: 'subtract/'
+                },
+                requestUrlDivide: {
+                    type: String,
+                    value: 'divide/'
+                },
+                errorText: {
+                    type: String,
+                    value: 'This is an error message'
+                },
+                submitSumText: {
+                    type: String,
+                    value: 'Sum'
+                },
+                submitMultiplyText: {
+                    type: String,
+                    value: 'Multiply'
+                },
+                submitSubtractText: {
+                    type: String,
+                    value: 'Subtract'
+                },
+                submitDivideText: {
+                    type: String,
+                    value: 'Divide'
+                },
+                resultText: {
+                    type: String,
+                    value: 'The result is '
+                },
+                resultTextRaw: {
+                    type: String,
+                    value: 'The result is '
+                },
+                _data: {
+                    type: Object,
+                    value: {}
+                }
+            },
+            _handleError: function(text) {
+                this.errorText = text;
+                this.$.toast.show();
+            },
+            _handlePutResponse: function(e) {
+                var num1 = Math.round(e.detail.response.num1*10000)/10000;
+                var num2 = Math.round(e.detail.response.num2*10000)/10000;
+                var result = Math.round(e.detail.response.result*10000)/10000;
+                this._data = {num1: num1, num2: num2, result: result};
+                this.fire('response', this._data);
+            },
+            _showResult: function() {
+                this.resultText = this.resultTextRaw;
+                this.resultText += String(this._data.result);
+                this.$.result.show();
+            },
+            _submitSum: function() {
+                if (this.$.form.checkValidity()) {
+                    this.$.putAjax.url = requestUrl + requestUrlSum;
+                    // This is a workaround.
+                    // summand should be sent as numbers
+                    this.set('_data.num1', parseFloat(this._data.num1));
+                    this.set('_data.num2', parseFloat(this._data.num2));
+                    //this is another workaround: result cannot be null
+                    this.set('_data.result', parseFloat(0));
+                    
+                    // iron-ajax does not stringify object
+                    this.$.putAjax.body = JSON.stringify(this._data);
+                    this.$.putAjax.generateRequest();
+                } else {
+                    this._handleError('At least one field is invalid.');
+                }
+            },
+            _submitMultiply: function() {
+                if (this.$.form.checkValidity()) {
+                    this.$.putAjax.url = requestUrl + requestUrlMultiply;
+                    // This is a workaround.
+                    // summand should be sent as numbers
+                    this.set('_data.num1', parseFloat(this._data.num1));
+                    this.set('_data.num2', parseFloat(this._data.num2));
+                    //this is another workaround: result cannot be null
+                    this.set('_data.result', parseFloat(0));
+                    
+                    // iron-ajax does not stringify object
+                    this.$.putAjax.body = JSON.stringify(this._data);
+                    this.$.putAjax.generateRequest();
+                } else {
+                    this._handleError('At least one field is invalid.');
+                }
+            },
+            _submitSubtract: function() {
+                if (this.$.form.checkValidity()) {
+                    this.$.putAjax.url = requestUrl + requestUrlSubtract;
+                    // This is a workaround.
+                    // summand should be sent as numbers
+                    this.set('_data.num1', parseFloat(this._data.num1));
+                    this.set('_data.num2', parseFloat(this._data.num2));
+                    //this is another workaround: result cannot be null
+                    this.set('_data.result', parseFloat(0));
+                    
+                    // iron-ajax does not stringify object
+                    this.$.putAjax.body = JSON.stringify(this._data);
+                    this.$.putAjax.generateRequest();
+                } else {
+                    this._handleError('At least one field is invalid.');
+                }
+            },
+            _submitDivide: function() {
+                if (this.$.form.checkValidity()) {
+                    this.$.putAjax.url = requestUrl + requestUrlDivide;
+                    // This is a workaround.
+                    // summand should be sent as numbers
+                    this.set('_data.num1', parseFloat(this._data.num1));
+                    this.set('_data.num2', parseFloat(this._data.num2));
+                    //this is another workaround: result cannot be null
+                    this.set('_data.result', parseFloat(0));
+                    
+                    // iron-ajax does not stringify object
+                    this.$.putAjax.body = JSON.stringify(this._data);
+                    this.$.putAjax.generateRequest();
+                } else {
+                    this._handleError('At least one field is invalid.');
+                }
+            },
+            _handlePutError: function() {
+                this._handleError('The calculation failed');
+            },
+        });
+    })();
+</script>
