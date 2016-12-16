@@ -37,6 +37,8 @@ class MyServiceActor extends Actor with MyServiceRoute with MyStaticRoute {
 // this trait defines our service behavior independently from the service actor
 trait MyServiceRoute extends HttpService with DefaultJsonProtocol {
 
+  import myCalcProtocol._
+   
   val myServiceRoute =
     pathPrefix("api" / "v1" / "sum") {
       put {
