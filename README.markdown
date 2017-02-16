@@ -7,7 +7,7 @@
   docker-compose run --rm calc-tests
 
 3. Build the calc container / 
-  docker build -t 10.100.198.200/calc .
+  docker build -t 10.100.198.200/calc-app .
 
 4. run the calc container /
-  docker-compose up -d calc
+  docker-compose up -d calc-app
