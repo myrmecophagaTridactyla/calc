@@ -1,13 +1,16 @@
 ## Notes
 
-1. Build the test container /
-  docker build -f Dockerfile.test -t 10.100.198.200/calc-tests .
+1. Build the test container
 
-2. run the test container /
-  docker-compose run --rm calc-tests
+  'docker build -f Dockerfile.test -t 10.100.198.200/calc-tests .'
 
-3. Build the calc container / 
-  docker build -t 10.100.198.200/calc-app .
+2. run the test container
 
-4. run the calc container /
-  docker-compose up -d calc-app
+  'docker-compose run --rm calc-tests'
+
+3. Build the calc container
+
+  'docker build -t 10.100.198.200/calc-app .'
+
+4. run the calc container
+  'docker-compose up -d calc-app'
