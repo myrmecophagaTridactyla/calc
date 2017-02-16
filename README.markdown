@@ -2,7 +2,7 @@
 
 1. Build the test container
 
-  `docker build -f Dockerfile.test -t 10.100.198.200/calc-tests .`
+  `docker build -f Dockerfile.test -t 10.100.198.200:5000/calc-tests .`
 
 2. run the test container
 
@@ -10,7 +10,7 @@
 
 3. Build the calc container
 
-  `docker build -t 10.100.198.200/calc-app .`
+  `docker build -t 10.100.198.200:5000/calc-app .`
 
 4. run the calc container
   `docker-compose up -d calc-app`
