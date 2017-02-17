@@ -1,6 +1,6 @@
 FROM java
 
-COPY run.sh /run.sh
+COPY scripts/run.sh /run.sh
 RUN chmod +x /run.sh
 
 COPY target/scala-2.10/calc-assembly-0.1.jar /bs.jar
