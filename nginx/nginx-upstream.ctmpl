@@ -1,0 +1,5 @@
+upstream calc-app {
+    {{range service "calc-app" "any"}}
+    server {{.Address}}:{{.Port}};
+    {{end}}
+}
