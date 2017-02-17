@@ -31,8 +31,8 @@ RUN npm install -g bower
 # Dirs
 RUN mkdir /source
 
-ADD project /source/project
-ADD build.sbt /source/build.sbt
+ADD sbt/project /source/project
+ADD sbt/build.sbt /source/build.sbt
 ADD client/bower.json /source/client/bower.json
 ADD client/package.json /source/client/package.json
 ADD client/wct.conf.js /source/client/wct.conf.js
