@@ -36,7 +36,7 @@ ADD build.sbt /source/build.sbt
 ADD client/bower.json /source/client/bower.json
 ADD client/package.json /source/client/package.json
 ADD client/wct.conf.js /source/client/wct.conf.js
-ADD run_tests.sh /source/run_tests.sh
+ADD scripts/run_tests.sh /source/run_tests.sh
 
 RUN chmod +x /source/run_tests.sh
 
