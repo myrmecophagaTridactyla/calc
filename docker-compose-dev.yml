@@ -7,7 +7,7 @@ app:
     - 8080:8080
 
 tests:
-  image: 10.100.198.200:5000/calc-tests
+  image: 10.100.198.200:5000/calc-app-tests
   volumes:
     - ./target/scala-2.10:/source/target/scala-2.10
     - ./src:/source/src
