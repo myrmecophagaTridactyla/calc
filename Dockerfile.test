@@ -19,7 +19,7 @@ RUN set -ex && \
     apt update -y && \
     apt install -t \
       jessie-backports \
-      openjdk-8-jre-headless \
+      openjdk-7-jre-headless \
       ca-certificates-java -y
 
 # NodeJS, Git, SBT, xvfb
